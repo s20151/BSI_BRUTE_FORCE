@@ -168,14 +168,12 @@ def generate_random_key(length: int):
     generated_key = ''.join((random.choice(string.ascii_lowercase) for x in range(length)))
     return generated_key
 
+def generate_all_keys(key, length, file, decrypt=decrypt, swim=swear_word_in_message,)
+
 
 if __name__ == '__main__':
-    all_generated_keys = []
     with open("result2.txt", "w", encoding="UTF-8") as file:
         while True:
             key = generate_random_key(8)
-            while key in all_generated_keys:
-                key = generate_random_key(8)
-            all_generated_keys.append(key)
             decrypted_msg = decrypt(key, encrypted_message)
             swear_word_in_message(decrypted_msg, key, file, all_swear_words)
