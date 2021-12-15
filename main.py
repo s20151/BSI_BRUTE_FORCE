@@ -197,5 +197,9 @@ def generate_all_keys(key, key_size, letters_left, file, decrypt=decrypt, swim=s
             generate_all_keys(key + chr(letter), key_size, letters_left-1, file, decrypt, swim)
 
 if __name__ == '__main__':
-    with open("result2.txt", "w", encoding="UTF-8") as file:
+    with open("result4.txt", "w", encoding="UTF-8") as file:
+        # while True:
+        #     key = generate_random_key(8)
+        #     decrypted_msg = decrypt(key, encrypted_message)
+        #     swear_word_in_message(decrypted_msg, key, file, all_swear_words)
         generate_all_keys("", 8, 8, file, decrypt, swear_word_in_message)
