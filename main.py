@@ -154,7 +154,9 @@ def swear_word_in_message(decrypted_message, key, file, words=all_swear_words):
     """
     for word in words:
         if word in decrypted_message:
+            print("\n", file=file)
             print(f"pass:{decrypted_message} key:{key}", file=file)
+            print("\n", file=file)
             return True
     return False
 
@@ -168,7 +170,7 @@ def generate_random_key(length: int):
     generated_key = ''.join((random.choice(string.ascii_lowercase) for x in range(length)))
     return generated_key
 
-def generate_all_keys(key, length, file, decrypt=decrypt, swim=swear_word_in_message,)
+def generate_all_keys(key, length, letters_left, file, decrypt=decrypt, swim=swear_word_in_message):
 
 
 if __name__ == '__main__':
