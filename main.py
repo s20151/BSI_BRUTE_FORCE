@@ -174,8 +174,6 @@ def generate_random_key(length: int):
     return generated_key
 
 
-threads = []
-
 
 def generate_all_keys(key, key_size, letters_left, file, decrypt=decrypt, swim=swear_word_in_message):
     """
@@ -190,22 +188,14 @@ def generate_all_keys(key, key_size, letters_left, file, decrypt=decrypt, swim=s
     if letters_left == 0:
         swim(decrypt(key, encrypted_message), key, file, all_swear_words)
         return
-    # sys.setrecursionlimit(5000)
     for letter in range(97, 123):
         if letters_left == key_size:
-            # key += chr(letter)
-            # letters_left -= 1
             thread = threading.Thread(target=generate_all_keys(key + chr(letter), key_size, letters_left-1, file, decrypt, swim))
-            threads.append(thread)
             thread.start()
+            thread.join()
         else:
-            # key += chr(letter)
-            # letters_left -= 1
             generate_all_keys(key + chr(letter), key_size, letters_left-1, file, decrypt, swim)
 
 if __name__ == '__main__':
     with open("result2.txt", "w", encoding="UTF-8") as file:
         generate_all_keys("", 8, 8, file, decrypt, swear_word_in_message)
-
-    for thread in threads:
-        thread.join()
